@@ -1,0 +1,22 @@
+{
+    "name": "zoondo/allegro-api",
+    "type": "library",
+    "description": "The PHP Interface for Allegro WebAPI",
+    "keywords": ["allegro", "api", "webapi"],
+    "homepage": "https://zoondo.eu",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maciej Strączkowski",
+            "email": "m.straczkowski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zoondo\\AllegroApi\\": "source/"
+        }
+    }
+}

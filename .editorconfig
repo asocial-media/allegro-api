@@ -1,0 +1,12 @@
+# Created by https://www.gitignore.io/api/netbeans,composer
+
+### NetBeans ###
+/nbproject/
+
+### PHPStorm ###
+/.idea/
+
+### Composer ###
+composer.phar
+composer.lock
+/vendor/
