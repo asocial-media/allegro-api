@@ -46,7 +46,7 @@ $response = $api->doGetBlackListUsers(array(
     'sessionHandle' => $api->getSession(),
 ));
 
-// We canm also omit "do" prefix in method names
+// We can also omit "do" prefix in method names
 $response = $api->getBlackListUsers(array(
     'sessionHandle' => $api->getSession(),
 ));
