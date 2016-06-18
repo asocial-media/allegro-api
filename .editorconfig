@@ -1,12 +1,10 @@
-# Created by https://www.gitignore.io/api/netbeans,composer
+; top-most EditorConfig file
+root = true
 
-### NetBeans ###
-/nbproject/
+; Unix-style newlines
+[*]
+end_of_line = LF
 
-### PHPStorm ###
-/.idea/
-
-### Composer ###
-composer.phar
-composer.lock
-/vendor/
+[*.php]
+indent_style = space
+indent_size = 4

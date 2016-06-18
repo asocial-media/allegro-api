@@ -45,9 +45,9 @@ use InvalidArgumentException;
  * ));
  * </pre>
  * 
- * @see     http://allegro.pl/webapi/documentation.php
- * @author  Maciej Strączkowski <m.straczkowski@gmail.com>
- * @version 1.0.0
+ * @see      http://allegro.pl/webapi/documentation.php
+ * @author   Maciej Strączkowski <m.straczkowski@gmail.com>
+ * @version  1.0.1
  */
 class AllegroApi
 {
