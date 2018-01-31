@@ -50,15 +50,6 @@ $response = $api->doGetBlackListUsers(array(
 $response = $api->getBlackListUsers(array(
     'sessionHandle' => $api->getSession(),
 ));
-
-```
-
-## Unit testing
-
-To run unit tests just execute the following command
-
-```bash
-$ php phpunit.phar ./tests
 ```
 
 ## Authors
