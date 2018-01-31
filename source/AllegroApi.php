@@ -48,7 +48,7 @@ use InvalidArgumentException;
  * @see        http://allegro.pl/webapi/documentation.php
  * @author     Maciej Strączkowski <m.straczkowski@gmail.com>
  * @copyright  ZOONDO.EU Maciej Strączkowski
- * @version    1.0.1
+ * @version    1.0.2
  */
 class AllegroApi
 {
