@@ -66,7 +66,7 @@ class AllegroApi
      * You can change this value by using setWsdlUrl method
      * It was developed in case of Allegro WebAPI changes
      */
-    const WSDL_SANDBOX = 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl';
+    const WSDL_SANDBOX = 'https://webapi.allegro.pl.allegrosandbox.pl/service.php?wsdl';
     
     /**
      * Country constant
