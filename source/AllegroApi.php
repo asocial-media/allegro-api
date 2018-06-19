@@ -48,7 +48,7 @@ use InvalidArgumentException;
  * @see        http://allegro.pl/webapi/documentation.php
  * @author     Maciej Strączkowski <m.straczkowski@gmail.com>
  * @copyright  ZOONDO.EU Maciej Strączkowski
- * @version    1.0.2
+ * @version    1.0.3
  */
 class AllegroApi
 {
@@ -412,6 +412,32 @@ class AllegroApi
     }
     
     /**
+     * Method calls doLoginWithAccessToken action 
+     * on allegro webapi
+     * 
+     * It saves session identifier from api
+     * response into class property
+     * 
+     * It works almost the same as standard
+     * WebAPI doLoginWithAccessToken action
+     * 
+     * @see     https://allegro.pl/webapi/documentation.php/show/id,101582
+     * @param   array  $parameters  Parameters
+     * @return  WebAPI Response
+     */
+    public function loginWithAccessToken(array $parameters)
+    {
+        // Executing request to WebAPI
+        $session = $this->getSoapClient()->doLoginWithAccessToken($parameters);
+        
+        // Setting session id into class property
+        $this->setSession($session->sessionHandlePart);
+        
+        // Returning session
+        return $session;
+    }
+    
+    /**
      * This method is an alias for login
      * 
      * It was developed to overwrite api
@@ -437,6 +463,21 @@ class AllegroApi
     public function doLoginEnc(array $parameters)
     {
         return $this->loginEnc($parameters);
+    }
+    
+    /**
+     * This method is an alias for 
+     * loginWithAccessToken
+     * 
+     * It was developed to overwrite api
+     * action call via this class
+     * 
+     * @see     https://allegro.pl/webapi/documentation.php/show/id,101582
+     * @return  array   WebAPI response
+     */
+    public function doLoginWithAccessToken(array $parameters)
+    {
+        return $this->loginWithAccessToken($parameters);
     }
     
     /**

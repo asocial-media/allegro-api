@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.2 (2018-06-19)
+
+- Implemented new login method using access token
+
 ## 1.0.2 (2018-01-31)
 
 - Changed licensor in LICENSE file
