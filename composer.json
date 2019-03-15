@@ -1,9 +1,9 @@
 {
     "name": "zoondo/allegro-api",
     "type": "library",
-    "description": "The PHP Interface for Allegro WebAPI",
-    "keywords": ["allegro", "api", "webapi"],
-    "homepage": "https://zoondo.eu",
+    "description": "The PHP Interface for Allegro RestAPI and Allegro WebAPI",
+    "keywords": ["allegro", "api", "webapi", "rest"],
+    "homepage": "https://www.zoondo.eu",
     "license": "MIT",
     "authors": [
         {
