@@ -1,6 +1,6 @@
 # README
 
-The PHP interface which allows you to communicate with **Allegro WebAPI**
+The PHP interface which allows you to communicate with **Allegro WebAPI and RestApi**
 
 ## Requirements
 
@@ -22,7 +22,7 @@ $ git clone https://github.com/zoondo/allegro-api.git
 
 or just [download zip archive](https://github.com/zoondo/allegro-api/archive/master.zip)
 
-## Basic usage with Allegro WebApi
+## Allegro WebApi basic usage
 
 ```php
 // Used namespace
@@ -52,7 +52,7 @@ $response = $api->getBlackListUsers(array(
 ));
 ```
 
-## Basic usage with Allegro RestApi
+## Allegro RestApi basic usage
 
 ```php
 // Used namespace
