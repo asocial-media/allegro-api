@@ -152,7 +152,7 @@ class AllegroRestApi
         $api = new AllegroRestApi(null, null);
         
         // Returning response
-        return $this->sendRequest("https://allegro.pl/auth/oauth/token"
+        return $api->sendRequest("https://allegro.pl/auth/oauth/token"
             . "?grant_type=refresh_token"
             . "&refresh_token=$refreshToken"
             . "&redirect_uri=$redirectUri",
