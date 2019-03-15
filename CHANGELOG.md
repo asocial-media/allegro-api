@@ -1,17 +1,5 @@
 # CHANGELOG
 
-## 2.0.3 (2019-03-15)
-
-- Fixed AllegroRestApi::refreshToken() (Fatal error: Using $this when not in object context)
-
-## 2.0.2 (2019-03-15)
-
-- Fixed git tag
-
-## 2.0.1 (2019-03-15)
-
-- Fixed README
-
 ## 2.0.0 (2019-03-15)
 
 - Added interface for REST API
