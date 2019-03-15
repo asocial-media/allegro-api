@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.2 (2019-03-15)
+
+- Fixed git tag
+
 ## 2.0.1 (2019-03-15)
 
 - Fixed README
