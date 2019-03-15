@@ -22,37 +22,7 @@ $ git clone https://github.com/zoondo/allegro-api.git
 
 or just [download zip archive](https://github.com/zoondo/allegro-api/archive/master.zip)
 
-## Allegro WebApi basic usage
-
-```php
-// Used namespace
-use Zoondo\AllegroApi\AllegroApi;
-
-// Creating new instance of AllegroApi
-$api = new AllegroApi('your_api_key');
-
-// We are going to login using Allegro WebApi
-$api->login(array(
-    'userLogin'    => 'example',
-    'userPassword' => 'examplepass',
-    'countryCode'  => $api->getCountry(),
-    'webapiKey'    => $api->getApiKey(),
-    'localVersion' => $api->getVersionKey(),
-));
-// For now, we have an access to $api->getSession()
-
-// Getting our current black list using Allegro WebApi
-$response = $api->doGetBlackListUsers(array(
-    'sessionHandle' => $api->getSession(),
-));
-
-// We can also omit "do" prefix in method names
-$response = $api->getBlackListUsers(array(
-    'sessionHandle' => $api->getSession(),
-));
-```
-
-## Allegro RestApi basic usage
+## Basic usage of Allegro RestApi
 
 ```php
 // Used namespace
@@ -116,6 +86,36 @@ $response = $restApi->put('/sale/offer-variants/' . $restApi->getUuid(), array(
 ), array(
     'Content-Type' => 'application/vnd.allegro.beta.v1+json', // Some actions needs version change from "public" to "beta"
     'Accept'       => 'application/vnd.allegro.beta.v1+json', // Some actions needs version change from "public" to "beta"
+));
+```
+
+## Basic usage of Allegro WebApi
+
+```php
+// Used namespace
+use Zoondo\AllegroApi\AllegroApi;
+
+// Creating new instance of AllegroApi
+$api = new AllegroApi('your_api_key');
+
+// We are going to login using Allegro WebApi
+$api->login(array(
+    'userLogin'    => 'example',
+    'userPassword' => 'examplepass',
+    'countryCode'  => $api->getCountry(),
+    'webapiKey'    => $api->getApiKey(),
+    'localVersion' => $api->getVersionKey(),
+));
+// For now, we have an access to $api->getSession()
+
+// Getting our current black list using Allegro WebApi
+$response = $api->doGetBlackListUsers(array(
+    'sessionHandle' => $api->getSession(),
+));
+
+// We can also omit "do" prefix in method names
+$response = $api->getBlackListUsers(array(
+    'sessionHandle' => $api->getSession(),
 ));
 ```
 

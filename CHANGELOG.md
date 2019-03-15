@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.1 (2019-03-15)
+
+- Fixed README
+
 ## 2.0.0 (2019-03-15)
 
 - Added interface for REST API
