@@ -342,6 +342,15 @@ class AllegroRestApi
             stream_context_create($options)
         ));
         
+        // We have found an error
+        if (isset($response->errors)) {
+            
+            // Throwing an exception
+            throw new Exception(
+                'An error has occurred: ' . print_r($response->errors, true)
+            );
+        }
+        
         // Checking if our response is a valid object
         if (!is_object($response)) {
             

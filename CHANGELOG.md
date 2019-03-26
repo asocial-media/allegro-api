@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.5 (2019-03-26)
+
+- Added rest api error handling with exceptions
+
 ## 2.0.0 (2019-03-15)
 
 - Added interface for REST API
