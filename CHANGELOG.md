@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 2.0.5 (2019-03-26)
+
+- Added rest api error handling with exceptions
+
+## 2.0.0 (2019-03-15)
+
+- Added interface for REST API
+- Added examples for REST API usage in README
+- Reorganized class names with back compatibility
+- Fixed some typos in comments
+- Fixed SOAP "broken pipe error" which sometimes occurres
+
+## 1.0.3 (2018-06-19)
+
+- Implemented new login method using access token
+
 ## 1.0.2 (2018-01-31)
 
 - Changed licensor in LICENSE file
