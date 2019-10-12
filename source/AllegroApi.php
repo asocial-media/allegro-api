@@ -2,16 +2,16 @@
 /**
  * Namespace declaration
  */
-namespace Zoondo\AllegroApi;
+namespace AsocialMedia\AllegroApi;
 
 /**
  * Class created for back compatibility
  * in order to organize class names
  * 
  * @see        http://allegro.pl/webapi/documentation.php
- * @author     Maciej Strączkowski <m.straczkowski@gmail.com>
- * @copyright  ZOONDO.EU Maciej Strączkowski
- * @version    2.0.0
+ * @author     ASOCIAL MEDIA Maciej Strączkowski <biuro@asocial.media>
+ * @copyright  ASOCIAL MEDIA Maciej Strączkowski
+ * @version    3.0.0
  */
 class AllegroApi extends AllegroWebApi
 {

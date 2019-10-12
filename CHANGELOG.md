@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 3.0.0 (2019-10-12)
+
+- Re-branded repository / organisation from "zoondo" to "asocial-media"
+- Added possibility to send raw data (text, binary etc) instead of JSON only via put(), post(), sendRequest() methods ($data parameter is no longer required as array and there is new parameter $json which tells that we should send request as json (default: true)
+- Fixed some typos
+
+# CHANGELOG
+
 ## 2.0.5 (2019-03-26)
 
 - Added rest api error handling with exceptions

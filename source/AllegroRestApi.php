@@ -2,7 +2,7 @@
 /**
  * Namespace declaration
  */
-namespace Zoondo\AllegroApi;
+namespace AsocialMedia\AllegroApi;
 
 /**
  * Object PHP interface for Allegro REST API
@@ -51,9 +51,9 @@ namespace Zoondo\AllegroApi;
  * </pre>
  * 
  * @see        https://developer.allegro.pl/about/
- * @author     Maciej Strączkowski <m.straczkowski@gmail.com>
- * @copyright  ZOONDO.EU Maciej Strączkowski
- * @version    2.0.0
+ * @author     ASOCIAL MEDIA Maciej Strączkowski <biuro@asocial.media>
+ * @copyright  ASOCIAL MEDIA Maciej Strączkowski
+ * @version    3.0.0
  */
 class AllegroRestApi
 {
@@ -114,9 +114,10 @@ class AllegroRestApi
      * Generates access token using given 
      * credentials and code
      * 
-     * @param   string  $code        Code from allegro
-     * @param   string  $clientId    Client ID
-     * @param   string  $redirectUri Client secret
+     * @param   string  $code         Code from allegro
+     * @param   string  $clientId     Client ID
+     * @param   string  $clientSecret Client secret
+     * @param   string  $redirectUri  Redirect URI
      * @return  object
      */
     public static function generateToken($code, $clientId, $clientSecret, $redirectUri)
@@ -140,10 +141,11 @@ class AllegroRestApi
     /**
      * Refreshes access token using given 
      * credentials
-     * 
-     * @param   string  $code        Code from allegro
-     * @param   string  $clientId    Client ID
-     * @param   string  $redirectUri Client secret
+     *
+     * @param   string  $refreshToken Refresh token
+     * @param   string  $clientId     Client ID
+     * @param   string  $clientSecret Client secret
+     * @param   string  $redirectUri  Redirect URI
      * @return  object
      */
     public static function refreshToken($refreshToken, $clientId, $clientSecret, $redirectUri)
@@ -268,11 +270,12 @@ class AllegroRestApi
      * @param   string  $resource   Resource path
      * @param   array   $data       Request body
      * @param   array   $headers    Request headers
+     * @param   boolean $json       Should we send $data as JSON?
      * @return  object
      */
-    public function post($resource, array $data, array $headers = array())
+    public function post($resource, $data, array $headers = array(), $json = true)
     {
-        return $this->sendRequest($resource, 'POST', $data, $headers);
+        return $this->sendRequest($resource, 'POST', $data, $headers, $json);
     }
     
     /**
@@ -282,11 +285,12 @@ class AllegroRestApi
      * @param   string  $resource   Resource path
      * @param   array   $data       Request body
      * @param   array   $headers    Request headers
+     * @param   boolean $json       Should we send $data as JSON?
      * @return  object
      */
-    public function put($resource, array $data, array $headers = array())
+    public function put($resource, $data, array $headers = array(), $json = true)
     {
-        return $this->sendRequest($resource, 'PUT', $data, $headers);
+        return $this->sendRequest($resource, 'PUT', $data, $headers, $json);
     }
     
     /**
@@ -305,29 +309,30 @@ class AllegroRestApi
     /**
      * Sends request to Allegro REST API
      * using given arguments
-     * 
+     *
      * Returns API response as JSON object
      * 
      * @param   string  $resource   Resource path
      * @param   string  $method     Request method
-     * @param   array   $data       Request body
+     * @param   mixed   $data       Request body
      * @param   array   $headers    Request headers
+     * @param   boolean $json       Should we send $data as JSON?
      * @return  object
      */
-    public function sendRequest($resource, $method, array $data = array(), array $headers = array())
+    public function sendRequest($resource, $method, $data = array(), array $headers = array(), $json = true)
     {
         // Setting request options
         $options = array(
             'http' => array(
                 'method'  => strtoupper($method),
                 'header'  => $this->parseHeaders($requestHeaders = array_replace(array(
-                    'User-Agent'      => 'Zoondo/AllegroApi/v2.0.0 (+https://www.zoondo.eu)',
+                    'User-Agent'      => 'AsocialMedia/AllegroApi/v3.0.0 (+https://asocial.media)',
                     'Authorization'   => 'Bearer ' . $this->getToken(),
                     'Content-Type'    => 'application/vnd.allegro.public.v1+json',
                     'Accept'          => 'application/vnd.allegro.public.v1+json',
                     'Accept-Language' => 'pl-PL'
                 ), $headers)),
-                'content' => json_encode($data),
+                'content' => ($json ? json_encode($data) : $data),
                 'ignore_errors' => true
             )
         );
@@ -346,7 +351,7 @@ class AllegroRestApi
         if (isset($response->errors)) {
             
             // Throwing an exception
-            throw new Exception(
+            throw new \Exception(
                 'An error has occurred: ' . print_r($response->errors, true)
             );
         }

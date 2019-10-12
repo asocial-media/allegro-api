@@ -11,22 +11,22 @@ The PHP interface which allows you to communicate with **Allegro WebAPI and Rest
 ### Composer (recommended)
 
 ```bash
-$ composer require zoondo/allegro-api
+$ composer require asocial-media/allegro-api
 ```
 
 ### Manually
 
 ```bash
-$ git clone https://github.com/zoondo/allegro-api.git
+$ git clone https://github.com/asocial-media/allegro-api.git
 ```
 
-or just [download zip archive](https://github.com/zoondo/allegro-api/archive/master.zip)
+or just [download zip archive](https://github.com/asocial-media/allegro-api/archive/master.zip)
 
 ## Basic usage of Allegro RestApi
 
 ```php
 // Used namespace
-use Zoondo\AllegroApi\AllegroRestApi;
+use AsocialMedia\AllegroApi\AllegroRestApi;
 
 // Register your application here:
 // https://apps.developer.allegro.pl
@@ -93,7 +93,7 @@ $response = $restApi->put('/sale/offer-variants/' . $restApi->getUuid(), array(
 
 ```php
 // Used namespace
-use Zoondo\AllegroApi\AllegroApi;
+use AsocialMedia\AllegroApi\AllegroApi;
 
 // Creating new instance of AllegroApi
 $api = new AllegroApi('your_api_key');
