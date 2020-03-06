@@ -5,6 +5,11 @@
 namespace AsocialMedia\AllegroApi;
 
 /**
+ * Used namespaces
+ */
+use RuntimeException;
+
+/**
  * Object PHP interface for Allegro REST API
  * 
  * This class allows you to call any resource 
@@ -53,7 +58,7 @@ namespace AsocialMedia\AllegroApi;
  * @see        https://developer.allegro.pl/about/
  * @author     ASOCIAL MEDIA Maciej Strączkowski <biuro@asocial.media>
  * @copyright  ASOCIAL MEDIA Maciej Strączkowski
- * @version    3.0.0
+ * @version    3.1.0
  */
 class AllegroRestApi
 {
@@ -318,6 +323,7 @@ class AllegroRestApi
      * @param   array   $headers    Request headers
      * @param   boolean $json       Should we send $data as JSON?
      * @return  object
+     * @throws  RuntimeException
      */
     public function sendRequest($resource, $method, $data = array(), array $headers = array(), $json = true)
     {
@@ -326,7 +332,7 @@ class AllegroRestApi
             'http' => array(
                 'method'  => strtoupper($method),
                 'header'  => $this->parseHeaders($requestHeaders = array_replace(array(
-                    'User-Agent'      => 'AsocialMedia/AllegroApi/v3.0.0 (+https://asocial.media)',
+                    'User-Agent'      => 'AsocialMedia/AllegroApi/v3.1.0 (+https://asocial.media)',
                     'Authorization'   => 'Bearer ' . $this->getToken(),
                     'Content-Type'    => 'application/vnd.allegro.public.v1+json',
                     'Accept'          => 'application/vnd.allegro.public.v1+json',
@@ -347,12 +353,13 @@ class AllegroRestApi
             stream_context_create($options)
         ));
         
-        // We have found an error
-        if (isset($response->errors)) {
-            
+        // We have found an error in response
+        if (isset($response->errors) || isset($response->error_description)) {
+
             // Throwing an exception
-            throw new \Exception(
-                'An error has occurred: ' . print_r($response->errors, true)
+            throw new RuntimeException(
+                'An error has occurred: ' . print_r($response, true),
+                $this->getResponseCode($http_response_header)
             );
         }
         
@@ -370,14 +377,51 @@ class AllegroRestApi
         // Returning response
         return $response;
     }
-        
+
+    /**
+     * Returns response HTTP code using array of
+     * response headers
+     *
+     * You can use special $http_response_header
+     * variable to get response headers
+     *
+     * It may return false if there isn't HTTP
+     * response code
+     *
+     * @param   array   $headers  HTTP headers
+     * @return  integer Response code
+     */
+    public function getResponseCode(array $headers)
+    {
+        // Creating an array for regex matches
+        $matches = array();
+
+        // Creating regex pattern
+        $pattern = '#HTTP/[0-9\.]+\s+([0-9]+)#';
+
+        // Loop over each of header from array
+        foreach ($headers as $key => $value) {
+
+            // Searching for response code
+            if (preg_match( $pattern, $value, $matches)) {
+
+                // Returning response code
+                return intval($matches[1]);
+            }
+        }
+
+        // Returning 0
+        return 0;
+    }
+
     /**
      * Creates request headers as string
      * using given array
-     * 
+     *
+     * @param   array   $headers  HTTP headers
      * @return  string  Request headers
      */
-    protected function parseHeaders(array $headers)
+    public function parseHeaders(array $headers)
     {
         // Creating variable for headers
         $stringHeaders = '';

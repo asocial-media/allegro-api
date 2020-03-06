@@ -48,7 +48,7 @@ use InvalidArgumentException;
  * @see        http://allegro.pl/webapi/documentation.php
  * @author     ASOCIAL MEDIA Maciej Strączkowski <biuro@asocial.media>
  * @copyright  ASOCIAL MEDIA Maciej Strączkowski
- * @version    3.0.0
+ * @version    3.1.0
  */
 class AllegroWebApi
 {
@@ -128,6 +128,7 @@ class AllegroWebApi
      * @param   string  $apiKey   Api key
      * @param   integer $country  Country
      * @param   boolean $sandbox  Sandbox
+     * @throws
      */
     public function __construct($apiKey, $country = AllegroWebApi::ALLEGRO_POLAND, $sandbox = false)
     {
@@ -504,6 +505,8 @@ class AllegroWebApi
      * 
      * @param   string   WebAPI action
      * @param   array    An arguments
+     * @return  mixed
+     * @throws  InvalidArgumentException
      */
     public function __call($action, array $arguments)
     {
