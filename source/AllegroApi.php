@@ -2,16 +2,16 @@
 /**
  * Namespace declaration
  */
-namespace Zoondo\AllegroApi;
+namespace AsocialMedia\AllegroApi;
 
 /**
  * Class created for back compatibility
  * in order to organize class names
  * 
  * @see        http://allegro.pl/webapi/documentation.php
- * @author     Maciej Strączkowski <m.straczkowski@gmail.com>
- * @copyright  ZOONDO.EU Maciej Strączkowski
- * @version    2.0.0
+ * @author     ASOCIAL MEDIA Maciej Strączkowski <biuro@asocial.media>
+ * @copyright  ASOCIAL MEDIA Maciej Strączkowski
+ * @version    3.1.0
  */
 class AllegroApi extends AllegroWebApi
 {
@@ -27,7 +27,9 @@ class AllegroApi extends AllegroWebApi
     
     /**
      * Returns an instance of AllegroRestApi
-     * 
+     *
+     * @param   string   $token    API token
+     * @param   boolean  $sandbox  Should we use sandbox?
      * @return  AllegroRestApi
      */
     public function restApi($token, $sandbox = false)

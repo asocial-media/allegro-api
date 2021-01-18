@@ -2,7 +2,7 @@
 /**
  * Namespace declaration
  */
-namespace Zoondo\AllegroApi;
+namespace AsocialMedia\AllegroApi;
 
 /**
  * Used namespaces
@@ -46,9 +46,9 @@ use InvalidArgumentException;
  * </pre>
  * 
  * @see        http://allegro.pl/webapi/documentation.php
- * @author     Maciej Strączkowski <m.straczkowski@gmail.com>
- * @copyright  ZOONDO.EU Maciej Strączkowski
- * @version    2.0.0
+ * @author     ASOCIAL MEDIA Maciej Strączkowski <biuro@asocial.media>
+ * @copyright  ASOCIAL MEDIA Maciej Strączkowski
+ * @version    3.1.0
  */
 class AllegroWebApi
 {
@@ -75,24 +75,35 @@ class AllegroWebApi
     
     /**
      * Allegro WebAPI key
+     *
      * @var string
      */
     protected $apiKey = null;
+
+    /**
+     * Version key
+     *
+     * @var string
+     */
+    protected $versionKey = null;
     
     /**
      * Allegro country id number (1 - Poland)
+     *
      * @var integer
      */
     protected $country = 1;
     
     /**
      * Allegro session identifier
+     *
      * @var string
      */
     protected $session = null;
     
     /**
      * Current WSDL Url
+     *
      * @var string
      */
     protected $wsdlUrl = null;
@@ -117,6 +128,7 @@ class AllegroWebApi
      * @param   string  $apiKey   Api key
      * @param   integer $country  Country
      * @param   boolean $sandbox  Sandbox
+     * @throws
      */
     public function __construct($apiKey, $country = AllegroWebApi::ALLEGRO_POLAND, $sandbox = false)
     {
@@ -373,7 +385,7 @@ class AllegroWebApi
      * 
      * @see     http://allegro.pl/webapi/documentation.php/show/id,82
      * @param   array  $parameters  Parameters
-     * @return  WebAPI Response
+     * @return  array  WebAPI Response
      */
     public function login(array $parameters)
     {
@@ -398,7 +410,7 @@ class AllegroWebApi
      * 
      * @see     http://allegro.pl/webapi/documentation.php/show/id,83
      * @param   array  $parameters  Parameters
-     * @return  WebAPI Response
+     * @return  array  WebAPI Response
      */
     public function loginEnc(array $parameters)
     {
@@ -424,7 +436,7 @@ class AllegroWebApi
      * 
      * @see     https://allegro.pl/webapi/documentation.php/show/id,101582
      * @param   array  $parameters  Parameters
-     * @return  WebAPI Response
+     * @return  array  WebAPI Response
      */
     public function loginWithAccessToken(array $parameters)
     {
@@ -493,6 +505,8 @@ class AllegroWebApi
      * 
      * @param   string   WebAPI action
      * @param   array    An arguments
+     * @return  mixed
+     * @throws  InvalidArgumentException
      */
     public function __call($action, array $arguments)
     {

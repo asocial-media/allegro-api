@@ -1,22 +1,24 @@
 {
-    "name": "zoondo/allegro-api",
+    "name": "asocial-media/allegro-api",
     "type": "library",
     "description": "The PHP Interface for Allegro RestAPI and Allegro WebAPI",
     "keywords": ["allegro", "api", "webapi", "rest"],
-    "homepage": "https://www.zoondo.eu",
+    "homepage": "https://asocial.media",
     "license": "MIT",
     "authors": [
         {
             "name": "Maciej Strączkowski",
-            "email": "m.straczkowski@gmail.com"
+            "email": "biuro@asocial.media"
         }
     ],
     "require": {
-        "php": ">=5.2.4"
+        "php": ">=5.2.4",
+        "ext-soap": "*",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
-            "Zoondo\\AllegroApi\\": "source/"
+            "AsocialMedia\\AllegroApi\\": "source/"
         }
     }
 }
