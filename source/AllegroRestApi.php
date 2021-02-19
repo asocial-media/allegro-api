@@ -142,6 +142,23 @@ class AllegroRestApi
             )
         );
     }
+
+    /**
+     * Generates access token for application
+     * @param   string  $clientId     Client ID
+     * @param   string  $clientSecret Client secret
+     * @return object
+     */
+    public static function generateTokenForApplication( $clientId, $clientSecret )
+    {
+        $api = new AllegroRestApi(null, null);
+        return $api->sendRequest( "https://allegro.pl/auth/oauth/token?grant_type=client_credentials", "GET",
+            array(),
+            array(
+                'Authorization' => 'Basic ' . base64_encode("$clientId:$clientSecret")
+            )
+        );
+    }
     
     /**
      * Refreshes access token using given 
