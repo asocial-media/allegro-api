@@ -369,6 +369,16 @@ class AllegroRestApi
             false, 
             stream_context_create($options)
         ));
+		
+		// sometimes endpoint return array directly
+		if(is_array($response))
+		{
+			$array = $response;
+			$response = new \stdClass();
+			$response->array = $array;
+			
+			unset($array);
+		}
         
         // We have found an error in response
         if (isset($response->errors) || isset($response->error_description)) {
