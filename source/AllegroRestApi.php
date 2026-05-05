@@ -327,6 +327,21 @@ class AllegroRestApi
     {
         return $this->sendRequest($resource, 'DELETE', array(), $headers);
     }
+
+    /**
+     * Sends PATCH request to Allegro REST API
+     * and returns response
+     * 
+     * @param   string  $resource   Resource path
+     * @param   array   $data       Request body
+     * @param   array   $headers    Request headers
+     * @param   boolean $json       Should we send $data as JSON?
+     * @return  object
+     */
+    public function patch($resource, $data, array $headers = array(), $json = true)
+    {
+        return $this->sendRequest($resource, 'PATCH', $data, $headers, $json);
+    }
     
     /**
      * Sends request to Allegro REST API
