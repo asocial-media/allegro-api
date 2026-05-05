@@ -105,11 +105,16 @@ class AllegroRestApi
      * 
      * @param   string  $clientId
      * @param   string  $redirectUri
+     * @param   bool  $sandbox
      * @return  string
      */
-    public static function getAuthLink($clientId, $redirectUri)
+    public static function getAuthLink($clientId, $redirectUri, $sandbox = false)
     {
-        return "https://allegro.pl/auth/oauth/authorize"
+        $endpoint = $sandbox ?
+            'https://allegro.pl.allegrosandbox.pl/auth/oauth/authorize' :
+            "https://allegro.pl/auth/oauth/authorize";
+
+        return $endpoint
             . "?response_type=code"
             . "&client_id=$clientId"
             . "&redirect_uri=$redirectUri";
@@ -123,37 +128,25 @@ class AllegroRestApi
      * @param   string  $clientId     Client ID
      * @param   string  $clientSecret Client secret
      * @param   string  $redirectUri  Redirect URI
+     * @param   bool  $sandbox
      * @return  object
      */
-    public static function generateToken($code, $clientId, $clientSecret, $redirectUri)
+    public static function generateToken($code, $clientId, $clientSecret, $redirectUri, $sandbox = false)
     {
         // Creating an instance of class
         $api = new AllegroRestApi(null, null);
+
+        $endpoint = $sandbox ?
+            'https://allegro.pl.allegrosandbox.pl/auth/oauth/token' :
+            "https://allegro.pl/auth/oauth/token";
         
         // Returning response
-        return $api->sendRequest("https://allegro.pl/auth/oauth/token"
+        return $api->sendRequest($endpoint
             . "?grant_type=authorization_code"
             . "&code=$code"
             . "&redirect_uri=$redirectUri",
             'POST', 
             array(), 
-            array(
-                'Authorization' => 'Basic ' . base64_encode("$clientId:$clientSecret")
-            )
-        );
-    }
-
-    /**
-     * Generates access token for application
-     * @param   string  $clientId     Client ID
-     * @param   string  $clientSecret Client secret
-     * @return object
-     */
-    public static function generateTokenForApplication( $clientId, $clientSecret )
-    {
-        $api = new AllegroRestApi(null, null);
-        return $api->sendRequest( "https://allegro.pl/auth/oauth/token?grant_type=client_credentials", "GET",
-            array(),
             array(
                 'Authorization' => 'Basic ' . base64_encode("$clientId:$clientSecret")
             )
@@ -168,15 +161,20 @@ class AllegroRestApi
      * @param   string  $clientId     Client ID
      * @param   string  $clientSecret Client secret
      * @param   string  $redirectUri  Redirect URI
+     * @param   bool  $sandbox
      * @return  object
      */
-    public static function refreshToken($refreshToken, $clientId, $clientSecret, $redirectUri)
+    public static function refreshToken($refreshToken, $clientId, $clientSecret, $redirectUri, $sandbox = false)
     {
         // Creating an instance of class
         $api = new AllegroRestApi(null, null);
-        
+
+        $endpoint = $sandbox ?
+            'https://allegro.pl.allegrosandbox.pl/auth/oauth/token' :
+            "https://allegro.pl/auth/oauth/token";
+
         // Returning response
-        return $api->sendRequest("https://allegro.pl/auth/oauth/token"
+        return $api->sendRequest($endpoint
             . "?grant_type=refresh_token"
             . "&refresh_token=$refreshToken"
             . "&redirect_uri=$redirectUri",
